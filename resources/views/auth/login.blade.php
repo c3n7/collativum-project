@@ -11,8 +11,8 @@
         <input type="text" placeholder="Email"
           class="input input-bordered w-full" />
         <!-- <label class="label">
-                      <span class="label-text-alt">Alt label</span>
-                    </label> -->
+                        <span class="label-text-alt">Alt label</span>
+                      </label> -->
       </div>
 
       <div class="form-control w-full">
@@ -22,8 +22,8 @@
         <input type="password" placeholder="password"
           class="input input-bordered w-full" />
         <!-- <label class="label">
-                      <span class="label-text-alt">Alt label</span>
-                    </label> -->
+                        <span class="label-text-alt">Alt label</span>
+                      </label> -->
       </div>
 
       <div class="flex justify-between mt-2 items-center">
