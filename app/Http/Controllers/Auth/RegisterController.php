@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Mail\Auth\UserRegistered;
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
@@ -50,6 +51,6 @@ class RegisterController extends Controller
 
     Mail::to($user)->send(new UserRegistered($user, $password));
 
-    return redirect()->route("auth.register")->with("message", "User created successfully");
+    return redirect(RouteServiceProvider::HOME)->with("message", "User created successfully");
   }
 }

@@ -36,6 +36,69 @@
       {{ $slot }}
     </main>
   </div>
+
+
+
+  @if (session()->has('message'))
+    <div class="fixed flex justify-center w-full bottom-5">
+      <div class="shadow-lg alert alert-success w-fit transition-all ease-out">
+        <div>
+          <i class="fa-solid fa-check-circle"></i>
+          <span>{{ session('message') }}</span>
+        </div>
+      </div>
+    </div>
+  @elseif (session()->has('long-message'))
+    <div class="fixed flex justify-center w-full bottom-5">
+      <div
+        class="shadow-lg alert alert-success w-fit transition-all ease-out ignore">
+        <div>
+          <i class="fa-solid fa-check-circle"></i>
+          <span>{{ session('long-message') }}</span>
+        </div>
+      </div>
+    </div>
+  @elseif (session()->has('warning'))
+    <div class="w-full fixed bottom-5 flex justify-center">
+      <div class="alert alert-warning shadow-lg  w-fit transition-all ease-out">
+        <div>
+          <i class="fa-solid fa-exclamation-circle"></i>
+          <span>{{ session('warning') }}</span>
+        </div>
+      </div>
+    </div>
+  @elseif (session()->has('long-warning'))
+    <div class="w-full fixed bottom-5 flex justify-center">
+      <div
+        class="alert alert-warning shadow-lg  w-fit transition-all ease-out ignore">
+        <div>
+          <i class="fa-solid fa-exclamation-circle"></i>
+          <span>{{ session('long-warning') }}</span>
+        </div>
+      </div>
+    </div>
+  @elseif (session()->has('info'))
+    <div class="w-full fixed bottom-5 flex justify-center">
+      <div class="alert alert-info shadow-lg  w-fit transition-all ease-out">
+        <div>
+          <i class="fa-solid fa-info-circle"></i>
+          <span>{{ session('info') }}</span>
+        </div>
+      </div>
+    </div>
+  @elseif (session()->has('error'))
+    <div class="fixed flex justify-center w-full bottom-5">
+      <div class="shadow-lg alert alert-error w-fit transition-all ease-out">
+        <div>
+          <i class="fa-solid fa-times-circle"></i>
+          <span>{{ session('error') }}</span>
+        </div>
+      </div>
+    </div>
+  @endif
+
+
+
 </body>
 
 </html>
