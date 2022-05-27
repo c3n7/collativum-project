@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\Auth\UserRegistered;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class RegisterController extends Controller
@@ -38,13 +40,15 @@ class RegisterController extends Controller
     $fields['password'] = Hash::make($password);
     Log::info("User Created", ["user" => $fields, "password" => $password]);
 
-    User::create(
+    $user = User::create(
       [
         'name' => $fields['name'],
         'email' => $fields['email'],
         'password' => $fields['password'],
       ]
     );
+
+    Mail::to($user)->send(new UserRegistered($user, $password));
 
     return redirect()->route("auth.register")->with("message", "User created successfully");
   }

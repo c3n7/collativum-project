@@ -2561,13 +2561,13 @@ body[dir="rtl"] .checkbox:checked,
 .w-10\/12 {
   width: 83.333333%;
 }
-.w-11\/12 {
-  width: 91.666667%;
-}
 .w-fit {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
+}
+.w-11\/12 {
+  width: 91.666667%;
 }
 .max-w-6xl {
   max-width: 72rem;
@@ -2862,21 +2862,9 @@ body[dir="rtl"] .checkbox:checked,
 }
 @media (min-width: 1024px) {
 
-  .lg\:w-6\/12 {
-    width: 50%;
-  }
-
   .lg\:px-8 {
     padding-left: 2rem;
     padding-right: 2rem;
-  }
-
-  .lg\:pr-2 {
-    padding-right: 0.5rem;
-  }
-
-  .lg\:pl-2 {
-    padding-left: 0.5rem;
   }
 }
 
