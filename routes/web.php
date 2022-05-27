@@ -23,6 +23,6 @@ Route::get('/', function () {
 Route::get('/user-add', [RegisterController::class, 'index'])->name('auth.register');
 Route::post('/user-add', [RegisterController::class, 'store']);
 
-Route::get('/login', [LoginController::class, 'index'])->name('auth.login');
-Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])
-  ->name('auth.forgot-password');
+// Route::get('/login', [LoginController::class, 'index'])->name('auth.login');
+// Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])
+//   ->name('auth.forgot-password');
