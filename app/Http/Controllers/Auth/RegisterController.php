@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -25,10 +29,23 @@ class RegisterController extends Controller
    */
   public function store(Request $request)
   {
-    $this->validate($request, [
+    $fields = $this->validate($request, [
       'name' => 'required|max:255',
-      'email' => 'required|email|max:255',
-      'password' => 'required|confirmed'
+      'email' => 'required|email|max:255'
     ]);
+
+    $password = Str::random(8);
+    $fields['password'] = Hash::make($password);
+    Log::info("User Created", ["user" => $fields, "password" => $password]);
+
+    User::create(
+      [
+        'name' => $fields['name'],
+        'email' => $fields['email'],
+        'password' => $fields['password'],
+      ]
+    );
+
+    return redirect()->route("auth.register")->with("message", "User created successfully");
   }
 }

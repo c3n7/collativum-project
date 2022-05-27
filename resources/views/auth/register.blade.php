@@ -10,7 +10,7 @@
         action="{{ route('auth.register') }}" method="post">
         @csrf
 
-        <div class="form-control w-full lg:w-6/12 lg:pr-2">
+        <div class="form-control w-full">
           <label class="label">
             <span class="label-text">Name</span>
           </label>
@@ -23,7 +23,7 @@
           @enderror
         </div>
 
-        <div class="form-control w-full lg:w-6/12 lg:pl-2">
+        <div class="form-control w-full">
           <label class="label">
             <span class="label-text">Email</span>
           </label>
@@ -36,34 +36,12 @@
           @enderror
         </div>
 
-        <div class="form-control w-full lg:w-6/12 lg:pr-2">
-          <label class="label">
-            <span class="label-text">Password</span>
-          </label>
-          <input type="password" placeholder="Password" name="password"
-            class="input input-bordered w-full" />
-          @error('password')
-            <label class="label">
-              <span class="label-text-alt text-error">{{ $message }}</span>
-            </label>
-          @enderror
-        </div>
-
-        <div class="form-control w-full lg:w-6/12 lg:pl-2">
-          <label class="label">
-            <span class="label-text">Confirm Password</span>
-          </label>
-          <input type="password" placeholder="Confirm Password"
-            name="password_confirmation" class="input input-bordered w-full" />
-        </div>
-
         <div class="mt-3 w-full">
           <button class="btn btn-primary gap-2">
             <i class="fa-solid fa-save"></i>
             Save
           </button>
         </div>
-
 
       </form>
     </div>
