@@ -23,8 +23,19 @@ Route::get('/', function () {
 Route::get('/user-add', [RegisterController::class, 'index'])->name('auth.register');
 Route::post('/user-add', [RegisterController::class, 'store']);
 
-Route::get('/login', [LoginController::class, 'index'])->name('auth.login');
-Route::post('/login', [LoginController::class, 'store']);
+// Route::get('/login', [LoginController::class, 'index'])->name('auth.login');
+// Route::post('/login', [LoginController::class, 'store']);
 
-Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])
-  ->name('auth.forgot-password');
+// Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])
+//   ->name('auth.forgot-password');
+
+
+Route::get('/', function () {
+  return view('welcome');
+});
+
+Route::get('/dashboard', function () {
+  return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__ . '/auth.php';

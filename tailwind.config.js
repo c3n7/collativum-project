@@ -1,11 +1,20 @@
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 module.exports = {
     content: [
         "./resources/**/*.blade.php",
         "./resources/**/*.js",
         "./resources/**/*.vue",
+        "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
+        "./storage/framework/views/*.php",
+        "./resources/views/**/*.blade.php",
     ],
     theme: {
-        extend: {},
+        extend: {
+            fontFamily: {
+                sans: ["Nunito", ...defaultTheme.fontFamily.sans],
+            },
+        },
     },
     daisyui: {
         themes: [
@@ -43,5 +52,5 @@ module.exports = {
         ],
     },
 
-    plugins: [require("daisyui")],
+    plugins: [require("daisyui"), require("@tailwindcss/forms")],
 };

@@ -1,56 +1,56 @@
-@extends('layouts.app')
+<x-guest-layout>
+    <x-auth-card>
+        <x-slot name="logo">
+            <a href="/">
+                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+            </a>
+        </x-slot>
 
-@section('content')
-  <div class="w-screen h-screen flex justify-center items-center">
-    <div class="w-4/12 bg-base-100 px-4 py-4 pb-6 rounded-lg">
-      <div class="text-xl font-bold pt-2 pb-1 px-2">Sign In</div>
-      <form class="bg-base-100 px-4 py-4 pb-6 rounded-lg flex flex-wrap"
-        action="{{ route('auth.login') }}" method="post">
-        @csrf
-        <div class="form-control w-full">
-          <label class="label">
-            <span class="label-text">Email</span>
-          </label>
-          <input type="text" placeholder="Email" name="email"
-            class="input input-bordered w-full" />
-          @error('email')
-            <label class="label">
-              <span class="label-text-alt text-error">{{ $message }}</span>
-            </label>
-          @enderror
-        </div>
+        <!-- Session Status -->
+        <x-auth-session-status class="mb-4" :status="session('status')" />
 
-        <div class="form-control w-full">
-          <label class="label">
-            <span class="label-text">Password</span>
-          </label>
-          <input type="password" placeholder="password" name="password"
-            class="input input-bordered w-full" />
-          @error('password')
-            <label class="label">
-              <span class="label-text-alt text-error">{{ $message }}</span>
-            </label>
-          @enderror
-        </div>
+        <!-- Validation Errors -->
+        <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <div class="flex justify-between mt-2 items-center w-full">
-          <div class="form-control">
-            <label class="label cursor-pointer">
-              <input type="checkbox" class="checkbox checkbox-primary" />
-              <span class="label-text ml-1 text-opacity-85"> Remember me </span>
-            </label>
-          </div>
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
 
-          <a href="{{ route('auth.forgot-password') }}"
-            class="text-primary font-semibold text-sm">
-            Reset Password?
-          </a>
-        </div>
+            <!-- Email Address -->
+            <div>
+                <x-label for="email" :value="__('Email')" />
 
-        <div class="mt-3 w-full">
-          <button class="btn btn-primary w-full">Sign In</button>
-        </div>
-      </form>
-    </div>
-  </div>
-@endsection
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+            </div>
+
+            <!-- Password -->
+            <div class="mt-4">
+                <x-label for="password" :value="__('Password')" />
+
+                <x-input id="password" class="block mt-1 w-full"
+                                type="password"
+                                name="password"
+                                required autocomplete="current-password" />
+            </div>
+
+            <!-- Remember Me -->
+            <div class="block mt-4">
+                <label for="remember_me" class="inline-flex items-center">
+                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
+                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                </label>
+            </div>
+
+            <div class="flex items-center justify-end mt-4">
+                @if (Route::has('password.request'))
+                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                        {{ __('Forgot your password?') }}
+                    </a>
+                @endif
+
+                <x-button class="ml-3">
+                    {{ __('Log in') }}
+                </x-button>
+            </div>
+        </form>
+    </x-auth-card>
+</x-guest-layout>
