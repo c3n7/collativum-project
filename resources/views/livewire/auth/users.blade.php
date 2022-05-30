@@ -21,31 +21,33 @@
       </div>
     </div>
 
-    <table class="table-auto w-full">
-      <thead>
-        <tr>
-          <th class="border px-4 py-2 bg-gray-100">ID</th>
-          <th class="border px-4 py-2 bg-gray-100">Name</th>
-          <th class="border px-4 py-2 bg-gray-100">Email</th>
-          <th class="border px-4 py-2 bg-gray-100">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        @foreach ($users as $user)
+    <div class="overflow-x-auto w-full">
+      <table class="table-auto w-fit">
+        <thead>
           <tr>
-            <td class="border px-4 py-2">{{ $user->id }}</td>
-            <td class="border px-4 py-2">{{ $user->name }}</td>
-            <td class="border px-4 py-2">{{ $user->email }}</td>
-            <td class="border px-4 py-2 flex justify-center">
-              <x-jet-danger-button class="ml-3"
-                wire:click="confirmDeletingItem({{ $user->id }})">
-                {{ __('Delete') }}
-              </x-jet-danger-button>
-            </td>
+            <th class="border px-4 py-2 bg-gray-100">ID</th>
+            <th class="border px-4 py-2 bg-gray-100">Name</th>
+            <th class="border px-4 py-2 bg-gray-100">Email</th>
+            <th class="border px-4 py-2 bg-gray-100">Actions</th>
           </tr>
-        @endforeach
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          @foreach ($users as $user)
+            <tr>
+              <td class="border px-4 py-2">{{ $user->id }}</td>
+              <td class="border px-4 py-2">{{ $user->name }}</td>
+              <td class="border px-4 py-2">{{ $user->email }}</td>
+              <td class="border px-4 py-2 flex justify-center">
+                <x-jet-danger-button class="ml-3"
+                  wire:click="confirmDeletingItem({{ $user->id }})">
+                  {{ __('Delete') }}
+                </x-jet-danger-button>
+              </td>
+            </tr>
+          @endforeach
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <div class="mt-4">{{ $users->links() }}</div>
