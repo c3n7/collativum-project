@@ -22,7 +22,7 @@
     </div>
 
     <div class="overflow-x-auto w-full">
-      <table class="table-auto w-fit">
+      <table class="table-auto w-full">
         <thead>
           <tr>
             <th class="border px-4 py-2 bg-gray-100">ID</th>
