@@ -15,10 +15,14 @@
           <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
             {{ __('Dashboard') }}
           </x-jet-nav-link>
-          <x-jet-nav-link href="{{ route('auth.user-management') }}"
-            :active="request()->routeIs('auth.user-management')">
-            {{ __('Users') }}
-          </x-jet-nav-link>
+          @role('admin')
+            @role('admin')
+              <x-jet-nav-link href="{{ route('auth.user-management') }}"
+                :active="request()->routeIs('auth.user-management')">
+                {{ __('Users') }}
+              </x-jet-nav-link>
+            @endrole
+          @endrole
         </div>
       </div>
 
@@ -167,10 +171,12 @@
         :active="request()->routeIs('dashboard')">
         {{ __('Dashboard') }}
       </x-jet-responsive-nav-link>
-      <x-jet-responsive-nav-link href="{{ route('auth.user-management') }}"
-        :active="request()->routeIs('auth.user-management')">
-        {{ __('Users') }}
-      </x-jet-responsive-nav-link>
+      @role('admin')
+        <x-jet-responsive-nav-link href="{{ route('auth.user-management') }}"
+          :active="request()->routeIs('auth.user-management')">
+          {{ __('Users') }}
+        </x-jet-responsive-nav-link>
+      @endrole
     </div>
 
     <!-- Responsive Settings Options -->

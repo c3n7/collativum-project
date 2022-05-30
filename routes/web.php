@@ -26,7 +26,8 @@ Route::middleware([
 Route::middleware([
   'auth:sanctum',
   config('jetstream.auth_session'),
-  'verified'
+  'verified',
+  'role:admin'
 ])->group(function () {
   Route::get('/user-management', function () {
     return view('auth.users-shim');
