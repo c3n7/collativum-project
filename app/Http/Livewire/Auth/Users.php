@@ -20,6 +20,7 @@ class Users extends Component
 
 
   public $addingItemToModel = false;
+  public $deletingItemFromModel = false;
 
   protected $rules = [
     'name' => 'required|max:255',
@@ -45,6 +46,12 @@ class Users extends Component
     $this->addingItemToModel = true;
   }
 
+
+  public function confirmDeletingItem($id)
+  {
+    $this->deletingItemFromModel = $id;
+  }
+
   public function saveNewRecord()
   {
     $fields = $this->validate();
@@ -67,6 +74,15 @@ class Users extends Component
 
     return redirect()->route('auth.user-management')
       ->with('flash.banner', 'User added successfully')
+      ->with('flash.bannerStyle', 'success');
+  }
+
+  public function deleteRecord(User $user)
+  {
+    $user->delete();
+
+    return redirect()->route('auth.user-management')
+      ->with('flash.banner', 'User deleted successfully')
       ->with('flash.bannerStyle', 'success');
   }
 }

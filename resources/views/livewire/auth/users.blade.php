@@ -36,7 +36,12 @@
             <td class="border px-4 py-2">{{ $user->id }}</td>
             <td class="border px-4 py-2">{{ $user->name }}</td>
             <td class="border px-4 py-2">{{ $user->email }}</td>
-            <td class="border px-4 py-2">Action</td>
+            <td class="border px-4 py-2 flex justify-center">
+              <x-jet-danger-button class="ml-3"
+                wire:click="confirmDeletingItem({{ $user->id }})">
+                {{ __('Delete') }}
+              </x-jet-danger-button>
+            </td>
           </tr>
         @endforeach
       </tbody>
@@ -76,6 +81,29 @@
         wire:loading.attr="disabled">
         {{ __('Save') }}
       </x-jet-button>
+    </x-slot>
+  </x-jet-dialog-modal>
+
+  <x-jet-dialog-modal wire:model="deletingItemFromModel">
+    <x-slot name="title">
+      {{ __('Delete Account') }}
+    </x-slot>
+
+    <x-slot name="content">
+      {{ __('Are you sure you want to delete the user? This operation can not be reversed.') }}
+    </x-slot>
+
+    <x-slot name="footer">
+      <x-jet-secondary-button wire:click="$set('deletingItemFromModel', false)"
+        wire:loading.attr="disabled">
+        {{ __('Cancel') }}
+      </x-jet-secondary-button>
+
+      <x-jet-danger-button class="ml-3"
+        wire:click="deleteRecord({{ $deletingItemFromModel }})"
+        wire:loading.attr="disabled">
+        {{ __('Delete') }}
+      </x-jet-danger-button>
     </x-slot>
   </x-jet-dialog-modal>
 </div>
