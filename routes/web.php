@@ -23,6 +23,16 @@ Route::middleware([
   })->name('dashboard');
 });
 
+Route::middleware([
+  'auth:sanctum',
+  config('jetstream.auth_session'),
+  'verified'
+])->group(function () {
+  Route::get('/user-management', function () {
+    return view('auth.users-shim');
+  })->name('auth.user-management');
+});
+
 
 Route::get('/', function () {
   if (Auth::check()) {
