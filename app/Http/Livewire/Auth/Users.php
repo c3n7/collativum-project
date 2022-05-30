@@ -2,9 +2,11 @@
 
 namespace App\Http\Livewire\Auth;
 
+use App\Mail\Auth\UserRegistered;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Str;
@@ -60,10 +62,11 @@ class Users extends Component
     );
 
     $this->addingItemToModel = false;
+
+    Mail::to($user)->send(new UserRegistered($user, $password));
+
     return redirect()->route('auth.user-management')
       ->with('flash.banner', 'User added successfully')
       ->with('flash.bannerStyle', 'success');
-
-    // Mail::to($user)->send(new UserRegistered($user, $password));
   }
 }
