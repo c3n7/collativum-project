@@ -26,11 +26,6 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 |
 */
 
-Route::get('/', function () {
-  // return view('welcome');
-  return redirect()->route('login');
-});
-
 Route::get('/user-add', [RegisterController::class, 'index'])->name('auth.register');
 Route::post('/user-add', [RegisterController::class, 'store']);
 
@@ -92,4 +87,10 @@ Route::middleware('auth')->group(function () {
 
   Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
     ->name('logout');
+});
+
+
+Route::get('/', function () {
+  // return view('welcome');
+  return redirect()->route('login');
 });
