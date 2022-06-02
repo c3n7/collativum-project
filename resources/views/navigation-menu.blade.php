@@ -16,13 +16,15 @@
             {{ __('Dashboard') }}
           </x-jet-nav-link>
           @role('admin')
-            @role('admin')
-              <x-jet-nav-link href="{{ route('auth.user-management') }}"
-                :active="request()->routeIs('auth.user-management')">
-                {{ __('Users') }}
-              </x-jet-nav-link>
-            @endrole
+            <x-jet-nav-link href="{{ route('auth.user-management') }}"
+              :active="request()->routeIs('auth.user-management')">
+              {{ __('Users') }}
+            </x-jet-nav-link>
           @endrole
+          <x-jet-nav-link href="{{ route('students.list') }}"
+            :active="request()->routeIs('students.list')">
+            {{ __('Students') }}
+            </x-jet-responsive-nav-link>
         </div>
       </div>
 
@@ -177,6 +179,10 @@
           {{ __('Users') }}
         </x-jet-responsive-nav-link>
       @endrole
+      <x-jet-responsive-nav-link href="{{ route('students.list') }}"
+        :active="request()->routeIs('students.list')">
+        {{ __('Students') }}
+      </x-jet-responsive-nav-link>
     </div>
 
     <!-- Responsive Settings Options -->

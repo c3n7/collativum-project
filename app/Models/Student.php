@@ -21,6 +21,7 @@ class Student extends Model
     'siblings',
     'language',
     'liaison_officer',
+    'identifier_key',
   ];
 
   protected $dates = [

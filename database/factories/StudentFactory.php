@@ -28,6 +28,7 @@ class StudentFactory extends Factory
       'siblings' => $this->faker->numberBetween(2, 12),
       'language' => $this->faker->word(),
       'liaison_officer' => $this->faker->name(),
+      'identifier_key' => $this->faker->regexify('FK\/[0-9]{4}\/2[5-9]'),
     ];
   }
 }

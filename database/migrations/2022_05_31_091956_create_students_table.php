@@ -27,6 +27,8 @@ return new class extends Migration
       $table->integer('siblings')->nullable();
       $table->string('language')->nullable();
       $table->string('liaison_officer')->nullable();
+
+      $table->string('identifier_key')->nullable();
       $table->timestamps();
     });
   }
