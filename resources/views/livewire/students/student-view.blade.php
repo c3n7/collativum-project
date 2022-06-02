@@ -152,4 +152,28 @@
       </div>
     </div>
   </div>
+
+  <div class="pb-12">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+      <div class="overflow-hidden shadow-xl sm:rounded-lg">
+
+
+        <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
+          <div class="text-2xl flex justify-between items-center">
+            <span>
+              {{ __('Report Cards') }}
+            </span>
+          </div>
+
+          <div class="mt-6 mb-6">
+            Table goes here
+
+          </div>
+
+        </div>
+
+
+      </div>
+    </div>
+  </div>
 </div>
