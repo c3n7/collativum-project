@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Students\StudentView;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,9 +23,14 @@ Route::middleware([
     return view('dashboard');
   })->name('dashboard');
 
+
   Route::get('/students', function () {
     return view('students.students-shim');
   })->name('students.list');
+
+
+  Route::get('/students/{student}', StudentView::class)
+    ->name('students.view');
 });
 
 Route::middleware([

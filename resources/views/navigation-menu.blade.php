@@ -22,7 +22,8 @@
             </x-jet-nav-link>
           @endrole
           <x-jet-nav-link href="{{ route('students.list') }}"
-            :active="request()->routeIs('students.list')">
+            :active="request()->routeIs('students.list') ||
+                request()->routeIs('students.view')">
             {{ __('Students') }}
             </x-jet-responsive-nav-link>
         </div>
@@ -180,7 +181,8 @@
         </x-jet-responsive-nav-link>
       @endrole
       <x-jet-responsive-nav-link href="{{ route('students.list') }}"
-        :active="request()->routeIs('students.list')">
+        :active="request()->routeIs('students.list') ||
+            request()->routeIs('students.view')">
         {{ __('Students') }}
       </x-jet-responsive-nav-link>
     </div>
