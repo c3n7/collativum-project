@@ -81,14 +81,14 @@
         <x-jet-label for="brief_description"
           value="{{ __('Brief Desription') }}" />
         <x-jet-input id="brief_description" type="text"
-          class="mt-1 block w-full" autocomplete="brief_description" />
+          wire:model="brief_description" class="mt-1 block w-full" />
         <x-jet-input-error for="brief_description" class="mt-2" />
       </div>
 
       <div class="col-span-6 sm:col-span-4 mt-3">
         <x-jet-label for="background" value="{{ __('Background') }}" />
         <x-forms.text-area id="background" type="Background"
-          class="mt-1 block w-full" autocomplete="background" />
+          wire:model="background" class="mt-1 block w-full" />
         <x-jet-input-error for="background" class="mt-2" />
       </div>
 

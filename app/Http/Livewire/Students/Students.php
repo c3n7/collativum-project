@@ -71,7 +71,7 @@ class Students extends Component
     "kcpe_marks" => 'nullable|numeric|max:500',
     "high_school_name" => 'nullable|string',
     "ambition" => 'nullable|string',
-    "siblings" => 'nullable|string',
+    "siblings" => 'nullable|numeric',
     "language" => 'nullable|string',
     "liaison_officer" => 'nullable|string',
   ];
@@ -79,11 +79,12 @@ class Students extends Component
   public function saveNewRecord()
   {
     $fields = $this->validate();
+
     if ($this->image) {
       $filename = $this->image->store('public/photos');
-      $this->image_name = substr($filename, 7);
+      $image_name = substr($filename, 7);
       Student::create(
-        array_merge($fields, ['image' => $this->image_name])
+        array_merge($fields, ['image' => $image_name])
       );
     } else {
       Student::create($fields);
