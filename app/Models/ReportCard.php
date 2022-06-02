@@ -15,4 +15,14 @@ class ReportCard extends Model
     'term',
     'year'
   ];
+
+  public function student()
+  {
+    return $this->belongsTo(Student::class, "student_id");
+  }
+
+  public function subjectGrades()
+  {
+    return  $this->hasMany(SubjectGrades::class, "report_card_id");
+  }
 }

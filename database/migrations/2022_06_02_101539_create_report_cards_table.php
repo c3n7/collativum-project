@@ -18,7 +18,7 @@ return new class extends Migration
 
       // TODO:: Side effect of this is there will be report cards left hanging
       // On delete student prevent this
-      $table->foreigId('student_id')
+      $table->foreignId('student_id')
         ->constrained('students')
         ->onUpdate('cascade')
         ->onDelete('cascade');

@@ -26,4 +26,10 @@ class Student extends Model
   protected $dates = [
     'dob'
   ];
+
+
+  public function reportCards()
+  {
+    return $this->belongsTo(ReportCard::class, "student_id");
+  }
 }
