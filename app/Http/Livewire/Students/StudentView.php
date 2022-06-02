@@ -73,7 +73,8 @@ class StudentView extends Component
     if ($this->image) {
       if ($this->student->image) {
         try {
-          unlink(storage_path('app/public/' . $this->student->image));
+          // unlink(storage_path('app/public/' . $this->student->image));
+          Storage::delete('/public/' . $this->student->image);
         } catch (Exception $e) {
           Log::error("StudentView", $e->getmessage());
         }

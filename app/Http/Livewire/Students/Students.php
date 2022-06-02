@@ -3,6 +3,9 @@
 namespace App\Http\Livewire\Students;
 
 use App\Models\Student;
+use Exception;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
@@ -48,6 +51,15 @@ class Students extends Component
 
   public function deleteRecord(Student $student)
   {
+
+    if ($student->image) {
+      try {
+        Storage::delete('/public/' . $student->image);
+      } catch (Exception $e) {
+        Log::error("Students", $e->getmessage());
+      }
+    }
+
     $student->delete();
 
     return redirect()->route('students.list')
