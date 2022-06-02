@@ -52,3 +52,12 @@ Route::get('/', function () {
     return redirect('login');
   }
 });
+
+if (env('APP_DEBUG')) {
+  Route::get('generate', function () {
+    // dd(\Illuminate\Support\Facades\Artisan::call('storage:link'));
+    dd(Storage::files("/public/photos"));
+  });
+
+  // Also go through public giving permissions 755 or something
+}
