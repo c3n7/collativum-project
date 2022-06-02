@@ -44,10 +44,14 @@
                 {{ $record->dob->diffInYears() }}
               </td>
               <td class="border px-4 py-2 flex justify-center">
-                <x-jet-danger-button class="ml-3"
-                  wire:click="confirmDeletingItem({{ $record->id }})">
-                  {{ __('Delete') }}
-                </x-jet-danger-button>
+                <x-jet-button class="ml-3">
+                  {{ __('View') }}
+                  </x-jet-danger-button>
+
+                  <x-jet-danger-button class="ml-3"
+                    wire:click="confirmDeletingItem({{ $record->id }})">
+                    {{ __('Delete') }}
+                  </x-jet-danger-button>
               </td>
             </tr>
           @endforeach
