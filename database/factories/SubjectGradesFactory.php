@@ -19,6 +19,7 @@ class SubjectGradesFactory extends Factory
   {
     return [
       'report_card_id' => $this->faker->randomElement(ReportCard::all()->pluck("id")->toArray()),
+      'subject_name' => $this->faker->word(),
       'mark' => $this->faker->numberBetween(60, 95),
       'grade' => $this->faker->randomElement(["A", "A-", "B+", "B", "B-", "C+"]),
     ];

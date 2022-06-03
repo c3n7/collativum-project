@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Students;
 
+use App\Models\ReportCard;
 use App\Models\Student;
 use Exception;
 use Illuminate\Support\Facades\Log;
@@ -27,7 +28,14 @@ class StudentView extends Component
   public $liaison_officer;
   public $current_image;
 
+  public $teachers_comment;
+  public $original_report_card_file;
+  public $term;
+  public $year;
 
+
+  public $addingItemToModel = false;
+  public $deletingItemFromModel = false;
 
   public function mount(Student $student)
   {
@@ -48,7 +56,10 @@ class StudentView extends Component
 
   public function render()
   {
-    return view('livewire.students.student-view');
+    $report_cards = ReportCard::where('student_id', $this->student->id)
+      ->orderByDesc('id')
+      ->paginate(10);
+    return view('livewire.students.student-view', ["report_cards" => $report_cards]);
   }
 
 
@@ -101,6 +112,54 @@ class StudentView extends Component
 
     return redirect()->route('students.view', $this->student->id)
       ->with('flash.banner', 'Student updated successfully')
+      ->with('flash.bannerStyle', 'success');
+  }
+
+
+
+  public function confirmDeletingItem($id)
+  {
+    $this->deletingItemFromModel = $id;
+  }
+
+
+  public function deleteRecord(ReportCard $reportCard)
+  {
+    $reportCard->delete();
+    return redirect()->route('students.view', $this->student->id)
+      ->with('flash.banner', 'Record deleted successfully')
+      ->with('flash.bannerStyle', 'success');
+  }
+
+
+  public function confirmAddingItem()
+  {
+    $this->addingItemToModel = true;
+  }
+
+
+  public function saveNewRecord()
+  {
+    $fields = $this->validate([
+      "teachers_comment" => 'required|string',
+      'original_report_card_file' => 'nullable|sometimes|file|max:2048', // 2MB Max
+      "term" => 'required|numeric',
+      "year" => 'required|numeric',
+    ]);
+    $fields['student_id'] = $this->student->id;
+
+    if ($this->original_report_card_file) {
+      $filename = $this->original_report_card_file->store('public/documents');
+      $filename = substr($filename, 7);
+      ReportCard::create(
+        array_merge($fields, ['original_report_card_file' => $filename])
+      );
+    } else {
+      ReportCard::create($fields);
+    }
+
+    return redirect()->route('students.view', $this->student->id)
+      ->with('flash.banner', 'Report card added successfully')
       ->with('flash.bannerStyle', 'success');
   }
 }

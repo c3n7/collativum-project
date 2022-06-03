@@ -11,6 +11,7 @@ class SubjectGrades extends Model
 
   protected $fillable = [
     'report_card_id',
+    'subject_name',
     'mark',
     'grade'
   ];

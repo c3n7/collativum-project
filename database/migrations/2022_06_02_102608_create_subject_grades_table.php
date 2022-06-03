@@ -20,6 +20,7 @@ return new class extends Migration
         ->onUpdate('cascade')
         ->onDelete('cascade');
 
+      $table->string('subject_name');
       $table->integer('mark');
       $table->string('grade', 10);
       $table->timestamps();
