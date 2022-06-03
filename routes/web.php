@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Students\ReportCardView;
 use App\Http\Livewire\Students\StudentView;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,9 @@ Route::middleware([
 
   Route::get('/students/{student}', StudentView::class)
     ->name('students.view');
+
+  Route::get('/students/{student}/reportCard/{reportCard}', ReportCardView::class)
+    ->name('students.view.report-card');
 });
 
 Route::middleware([

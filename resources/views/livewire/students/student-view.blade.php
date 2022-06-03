@@ -200,7 +200,8 @@
                         {{ substr($record->teachers_comment, 0, 20) }}
                       </td>
                       <td class="border px-4 py-2 flex justify-center">
-                        <a href="{{ route('students.view', $record->id) }}">
+                        <a
+                          href="{{ route('students.view.report-card', ['student' => $student->id, 'reportCard' => $record->id]) }}">
                           <x-jet-button class="ml-3">
                             {{ __('View') }}
                           </x-jet-button>
