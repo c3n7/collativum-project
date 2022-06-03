@@ -220,6 +220,7 @@
 
           </div>
 
+          <div class="mt-4">{{ $report_cards->links() }}</div>
         </div>
 
 

@@ -9,10 +9,11 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Livewire\WithPagination;
 
 class StudentView extends Component
 {
-  use WithFileUploads;
+  use WithFileUploads, WithPagination;
   public $student;
 
   public $name;

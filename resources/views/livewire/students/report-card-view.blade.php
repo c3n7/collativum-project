@@ -15,14 +15,76 @@
             <span>
               {{ __('Report Card') }} #{{ $reportCard->id }}
             </span>
-            @if (!empty($current_image))
-              <img src="{{ asset('/storage/' . $current_image) }}" alt=""
-                class="h-24 w-24 rounded-full object-cover">
+            @if (!empty($current_report_card))
+              <a href="{{ asset('/storage/' . $current_report_card) }}"
+                target="_blank"
+                class="text-blue-500 underline underline-offset-2 text-base">
+                Current Report Card
+              </a>
             @endif
           </div>
 
           <div class="mt-6 mb-6">
 
+
+            <section name="content">
+              <div class="grid grid-cols-2 gap-8 mt-3">
+                <div class="">
+                  <x-jet-label for="term" value="{{ __('Term') }}" />
+                  <x-jet-input id="term" type="number" class="mt-1 block w-full"
+                    wire:model.defer="term" />
+                  <x-jet-input-error for="term" class="mt-2" />
+                </div>
+
+                <div class="">
+                  <x-jet-label for="year" value="{{ __('Year') }}" />
+                  <x-jet-input id="year" type="number" class="mt-1 block w-full"
+                    wire:model.defer="year" />
+                  <x-jet-input-error for="year" class="mt-2" />
+                </div>
+              </div>
+
+
+              <div class="col-span-6 sm:col-span-4 mt-3">
+                <x-jet-label for="tearchers_comment"
+                  value="{{ __('Teacher Comments') }}" />
+                <x-forms.text-area id="teachers_comment"
+                  wire:model="teachers_comment" class="mt-1 block w-full" />
+                <x-jet-input-error for="teachers_comment"
+                  class="mt-2" />
+              </div>
+
+              <div class="col-span-6 sm:col-span-4 mt-3">
+                <div class="flex justify-between">
+                  <x-jet-label for="original_report_card_file"
+                    value="{{ __('Original Report Card') }}" />
+                  <span wire:loading
+                    class="text-gray-600 text-xs">Uploading</span>
+                </div>
+                <x-forms.input-file id="original_report_card_file" type="file"
+                  class="mt-1 block w-full"
+                  wire:model.defer="original_report_card_file" />
+                <x-jet-input-error for="original_report_card_file"
+                  class="mt-2" />
+
+              </div>
+            </section>
+
+
+            <div class=" flex justify-end w-full mt-6">
+              <div wire:loading.attr="hidden">
+                <x-jet-button class="ml-3" wire:click="updateRecord">
+                  {{ __('Update') }}
+                </x-jet-button>
+              </div>
+
+              <div wire:loading>
+                <x-jet-button class="ml-3" disabled>
+                  {{ __('Wait') }}
+                </x-jet-button>
+
+              </div>
+            </div>
           </div>
 
         </div>
