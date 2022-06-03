@@ -10,10 +10,11 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Livewire\WithPagination;
 
 class ReportCardView extends Component
 {
-  use WithFileUploads;
+  use WithFileUploads, WithPagination;
   public $student, $reportCard;
 
   public $teachers_comment;
@@ -24,6 +25,8 @@ class ReportCardView extends Component
 
   public $addingItemToModel = false;
   public $deletingItemFromModel = false;
+
+  public $subject_name, $mark, $grade;
 
 
   public function mount(Student $student, ReportCard $reportCard)
@@ -100,6 +103,31 @@ class ReportCardView extends Component
       "reportCard" => $this->reportCard->id
     ])
       ->with('flash.banner', 'Record deleted successfully')
+      ->with('flash.bannerStyle', 'success');
+  }
+
+  public function confirmAddingItem()
+  {
+    $this->addingItemToModel = true;
+  }
+
+
+  public function saveNewRecord()
+  {
+    $fields = $this->validate([
+      'subject_name' => 'required|string',
+      "mark" => 'required|numeric|max:100|min:0',
+      "grade" => 'required|string|max:5',
+    ]);
+    $fields['report_card_id'] = $this->reportCard->id;
+
+    SubjectGrades::create($fields);
+
+    return redirect()->route('students.view.report-card', [
+      "student" => $this->student->id,
+      "reportCard" => $this->reportCard->id
+    ])
+      ->with('flash.banner', 'Record added successfully')
       ->with('flash.bannerStyle', 'success');
   }
 }

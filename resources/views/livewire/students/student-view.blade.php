@@ -276,7 +276,7 @@
 
 
       <div class="col-span-6 sm:col-span-4 mt-3">
-        <x-jet-label for="tearchers_comment"
+        <x-jet-label for="teachers_comment"
           value="{{ __('Teacher Comments') }}" />
         <x-forms.text-area id="teachers_comment" wire:model="teachers_comment"
           class="mt-1 block w-full" />
