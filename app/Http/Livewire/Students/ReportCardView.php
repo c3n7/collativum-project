@@ -50,27 +50,6 @@ class ReportCardView extends Component
     ]);
   }
 
-
-  public function deleteRecord(ReportCard $reportCard)
-  {
-
-    if ($reportCard->image) {
-      try {
-        Storage::delete('/public/' . $reportCard->image);
-      } catch (Exception $e) {
-        Log::error("Students", $e->getmessage());
-      }
-    }
-
-    $reportCard->delete();
-
-    return redirect()->route('students.list')
-      ->with('flash.banner', 'Record deleted successfully')
-      ->with('flash.bannerStyle', 'success');
-  }
-
-
-
   public function updateRecord()
   {
     $fields = $this->validate([
@@ -102,6 +81,25 @@ class ReportCardView extends Component
       "reportCard" => $this->reportCard->id
     ])
       ->with('flash.banner', 'Record updated successfully')
+      ->with('flash.bannerStyle', 'success');
+  }
+
+
+
+  public function confirmDeletingItem($id)
+  {
+    $this->deletingItemFromModel = $id;
+  }
+
+
+  public function deleteRecord(SubjectGrades $subjectGrades)
+  {
+    $subjectGrades->delete();
+    return redirect()->route('students.view.report-card', [
+      "student" => $this->student->id,
+      "reportCard" => $this->reportCard->id
+    ])
+      ->with('flash.banner', 'Record deleted successfully')
       ->with('flash.bannerStyle', 'success');
   }
 }
