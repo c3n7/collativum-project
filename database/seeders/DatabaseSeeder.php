@@ -36,6 +36,6 @@ class DatabaseSeeder extends Seeder
     \App\Models\User::factory(50)->create();
     \App\Models\Student::factory(20)->create();
     \App\Models\ReportCard::factory(100)->create();
-    \App\Models\SubjectGrades::factory(2500)->create();
+    \App\Models\SubjectGrades::factory(1000)->create();
   }
 }
